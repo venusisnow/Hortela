@@ -23,7 +23,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE agendas (
-  agenda_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  agenda_id INTEGER PRIMARY KEY NOT NULL,
   data date(10) NOT null,
   conteudo varchar(200) NOT null,
   
@@ -34,13 +34,13 @@ CREATE TABLE agendas (
 CREATE TABLE recibos (
   pag_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   type int(1) NOT null, /*1-Semente, 2-Fruto, 3-Cerejeira*/
-  valor varchar(6) Not null,
-  expire date(10) NOT null, /*999,99*/
+  valor varchar(6) Not null, /*999,99*/
+  expire date(10) NOT null,
   
   paym_Type varchar(3) Not null,
-  paym_Status varchar(3) Not null,
+  paym_Status int(2) Not null, /* 1-Paid, 2-NotPaid */
 
-  user_id int(5),
+  user_id INTEGER,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
