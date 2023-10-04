@@ -53,7 +53,7 @@ To do so, you can use **GIT** commands, if you dont know how to do so, heres how
   - Brenda
   - Vitoria
 - **App Design:**
-  = Brenda
+  - Brenda
   - Vitoria
   - Heitor
 
