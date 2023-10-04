@@ -1,5 +1,5 @@
 ![HortelaLong](https://github.com/HortelaFinalPaper/Hortela-Server/assets/124541297/e6528b94-aa6d-4222-841c-f7f18a844820)
-![Static Badge](https://img.shields.io/badge/Version-1.0-white?labelColor=%23fff&color=%235aa02c)
+![Static Badge](https://img.shields.io/badge/Version-1.1-white?labelColor=%23fff&color=%235aa02c)
 
 Questions? Check out the [form!](https://docs.google.com/forms/d/e/1FAIpQLSe7E4BD5KrTsHNDCq1aUhnUfxtI9J1ATuiD2UITPPdPbDUxwA/viewform)
 
