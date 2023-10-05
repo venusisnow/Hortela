@@ -13,12 +13,12 @@ basePath = os.getcwd()
 app = flask.Flask(__name__, template_folder=os.path.join(basePath, 'templates'), static_folder=os.path.join(basePath, 'static'))
 configurationsInfoTXT = json.load(open("config.txt"))
 
-cok = ['null', 'null']
+cok = None
 
 # No url redirect
 @app.route('/')
 def empt():
-    return flask.redirect('index.html')
+    return flask.redirect('index')
 @app.route('/index')
 def index():
     return flask.render_template("index.html")
@@ -30,7 +30,7 @@ def sign():
     return flask.render_template("sign.html")
 @app.route('/profile')
 def profileH():
-    if cok[0] == 'null':
+    if cok is None:
         return flask.redirect('/login')
     else:
         return flask.render_template('profile.html', u=cok)
@@ -77,7 +77,8 @@ def loginR():
         else:
             global cok
 
-            cok = [email, passw]
+            cok = [email, passw, r[1], r[4], r[5]]
+            print(cok)
             return flask.redirect('/profile')
 @app.route('/redefinePass/send', methods=['POST'])
 def redifPass():

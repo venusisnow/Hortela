@@ -3,6 +3,7 @@
 		<title>Hortelã - Horta Comunitaria</title>
 		<link href="./static/css.css" rel="stylesheet">
 		<link href="./static/image/icoi.ico" rel="icon">
+		<script src="./static/jsProfile.js"></script>
 	</head>
 	<body>
 		<header>
@@ -24,37 +25,63 @@
 		</header>
 		<!--This type of header doesn't have login-->
 		
-		<p style="color: black; text-align: center; margin-top: 15%;">{{u[0]}} - {{u[1]}}</p>
-		
-		<footer>
-			<div class="footerComp">
-				<h4 class="topM">----------------------------------------------------------</h4>
-				<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos.html">termos de uso</a></h4>
-			</div>
-			<div class="footerComp">
-				<h4 class="topM">----------------------------------------------------------</h4>
-				<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos.html">termos de privacidade</a></h4>
-			</div>
-			<div class="footerComp"></br></br></br></div>
-			
-			<div class="footerComp">
-				<h4 class="topM">----Permaneça Conectado----</h4>
-				<div class="flexRight">
-					<div class="flexCol">
-						<h4>Instagram:</h4>
-						<a href="">@HortaHortela</a>
-					</div>
-					<div class="flexCol">
-						<h4>Facebook:</h4>
-						<a href="">@HortasHortela</a>
-					</div>
-					<div class="flexCol">
-						<h4>Twitter:</h4>
-						<a href="">@HortelanHortas</a>
-					</div>
+		<main>
+			<div class="marginAuto flexCol width500p heightAuto colorBlack">
+				<div class="flexCol">
+					<img src="./static/image/profile.png" class="transformS0"></img>
+					<h2 class="fontCourier textBold marginBot0">{{u[2]}}</h2>
+					<h3 class="fontCourier textNormal marginTop0">{{u[0]}}</h3>
+					
+					<button type="button" class="submitButtomForm marginAuto" onClick="location.href=''">Editar Perfil</button>
+					</br>
+					
+					<h3 class="fontCourier textNormal marginTop0 color3a7c4f">
+						<span class="backgroundImagePinLocation floatLeft">‎</span>
+						
+						{{u[4]}}
+					</h3>
+						
+					<h3 class="fontCourier textNormal marginTop0 color3a7c4f" id="telephoneProfile">
+						<span class="backgroundPhoneMailLocation floatLeft">‎</span>
+						{{u[3]}}
+					</h3>
+				</div>
+				
+				<div>
 				</div>
 			</div>
-		</footer>
+			<footer>
+				<div class="footerComp">
+					<h4 class="topM">----------------------------------------------------------</h4>
+					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos.html">termos de uso</a></h4>
+				</div>
+				<div class="footerComp">
+					<h4 class="topM">----------------------------------------------------------</h4>
+					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos.html">termos de privacidade</a></h4>
+				</div>
+				<div class="footerComp"></br></br></br></div>
+				
+				<div class="footerComp">
+					<h4 class="topM">----Permaneça Conectado----</h4>
+					<div class="flexRight">
+						<div class="flexCol">
+							<h4>Instagram:</h4>
+							<a href="">@HortaHortela</a>
+						</div>
+						<div class="flexCol">
+							<h4>Facebook:</h4>
+							<a href="">@HortasHortela</a>
+						</div>
+						<div class="flexCol">
+							<h4>Twitter:</h4>
+							<a href="">@HortelanHortas</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</main>
+		
+		
 	</body>
 </html>
 <!-------

@@ -9,16 +9,17 @@ footer{
 	flex-direction: row;
 	justify-content: center;
 	
-	position: absolute;
-	bottom: 0;
-	
 	height: 15%;
-	width: 100%;
+	width: 80%;
 	
-	background-color: #ade781
+	margin: auto;
+	margin-top: 8%;
+	
+	border-top: 3px solid #ade781;
 }
-
 body{
+	height: 100%;
+	
 	margin: 0;
 	
 	background-color: #f1f4f9;
@@ -27,29 +28,47 @@ body{
 	font-family: arial;
 }
 
-.linkNullS{
-	text-decoration: none;
+.color3a7c4f{color: #3a7c4f;}
+.backgroundImagePinLocation{
+	background-image: url("./image/pin.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left top;
+	
+	height: 25px;
+	width: 30px;
 }
-.width500p{
-	width: 500px;
+.backgroundPhoneMailLocation{
+	background-image: url("./image/phone.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left top;
+	
+	height: 25px;
+	width: 30px;
 }
+.marginTop0{margin-Top: 0;}
+.marginBot0{margin-Bottom: 0;}
+.textBold{font-weight: 700}
+.textNormal{font-weight: 300}
+.transformS0{transform: scale(.7)}
+.heightAuto{height: auto;}
+.colorBlack{color: black;}
+.floatLeft{float: left}
+.width45{width: 45%;}
+.whiteBackground{background-color: white;}
+.height75{height: 75%;}
+.linkNullS{text-decoration: none;}
+.width500p{width: 500px;}
 .flexCenterVertical{
 	Display: flex;
 	align-content: center;
 	flex-wrap: wrap;
 }
-.height70{
-	height: 70%;
-}
-.blueishgreentextone{
-	color: #3a7c4f;
-}
-.fontCourier{
-	font-family: 'Courier New';
-}
-.marginLeft15{
-	margin-left: 15%;
-}
+.height70{height: 70%;}
+.blueishgreentextone{color: #3a7c4f;}
+.fontCourier{font-family: 'Courier New';}
+.marginLeft15{margin-left: 15%;}
 .flexRight{
 	display: flex;
 	flex-direction: row;
@@ -61,6 +80,7 @@ body{
 }
 .flexCol > h4{margin: 0;}
 .flexCol > a{color: #747474}
+.marginAuto{margin: auto;}
 .footerComp{
 	display: flex;
 	width: auto;
