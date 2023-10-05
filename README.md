@@ -1,7 +1,13 @@
 ![HortelaLong](https://github.com/HortelaFinalPaper/Hortela-Server/assets/124541297/e6528b94-aa6d-4222-841c-f7f18a844820)
+<<<<<<< HEAD
 ![Static Badge](https://img.shields.io/badge/Version-1.1.2-white?labelColor=%23fff&color=%235aa02c)
+=======
 
-Questions? Check out the [form!](https://docs.google.com/forms/d/e/1FAIpQLSe7E4BD5KrTsHNDCq1aUhnUfxtI9J1ATuiD2UITPPdPbDUxwA/viewform)
+![Static Badge](https://img.shields.io/badge/Version-1.1-white?labelColor=%23fff&color=%235aa02c)
+>>>>>>> 4a88fa37e4a94498e53ccaec2cab3b14202c6fa7
+
+
+Bug founded? Suggestion? Check out the [form!](https://docs.google.com/forms/d/e/1FAIpQLSe7E4BD5KrTsHNDCq1aUhnUfxtI9J1ATuiD2UITPPdPbDUxwA/viewform)
 
 # Overview
 Welcome to the Finals Paper Server repository! This project is a web application built using Python, SQLite3, and Flask. It was developed for a *local web server*.
@@ -52,7 +58,7 @@ To do so, you can use **GIT** commands, if you dont know how to do so, heres how
   - Brenda
   - Vitoria
 - **App Design:**
-  = Brenda
+  - Brenda
   - Vitoria
   - Heitor
 
