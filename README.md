@@ -1,10 +1,6 @@
 ![HortelaLong](https://github.com/HortelaFinalPaper/Hortela-Server/assets/124541297/e6528b94-aa6d-4222-841c-f7f18a844820)
-<<<<<<< HEAD
-![Static Badge](https://img.shields.io/badge/Version-1.1.2-white?labelColor=%23fff&color=%235aa02c)
-=======
 
-![Static Badge](https://img.shields.io/badge/Version-1.1-white?labelColor=%23fff&color=%235aa02c)
->>>>>>> 4a88fa37e4a94498e53ccaec2cab3b14202c6fa7
+![Static Badge](https://img.shields.io/badge/Version-1.1.2-white?labelColor=%23fff&color=%235aa02c)
 
 
 Bug founded? Suggestion? Check out the [form!](https://docs.google.com/forms/d/e/1FAIpQLSe7E4BD5KrTsHNDCq1aUhnUfxtI9J1ATuiD2UITPPdPbDUxwA/viewform)

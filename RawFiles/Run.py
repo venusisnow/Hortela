@@ -78,7 +78,10 @@ def loginR():
             global cok
 
             cok = [email, passw, r[1], r[4], r[5]]
-            print(cok)
+            for i,k in enumerate(cok):
+                if k == None:
+                    cok[i] = "Não Defenido"
+
             return flask.redirect('/profile')
 @app.route('/redefinePass/send', methods=['POST'])
 def redifPass():
