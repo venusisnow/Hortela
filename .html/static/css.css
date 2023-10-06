@@ -29,8 +29,7 @@ body{
 }
 
 .color3a7c4f{color: #3a7c4f;}
-.backgroundImagePinLocation{
-	background-image: url("./image/pin.png");
+.backgroundImageSpan{
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: left top;
@@ -38,17 +37,12 @@ body{
 	height: 25px;
 	width: 30px;
 }
-.backgroundPhoneMailLocation{
-	background-image: url("./image/phone.png");
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: left top;
-	
-	height: 25px;
-	width: 30px;
-}
+.backgroundImagePin{background-image: url("./image/pin.png");}
+.backgroundImagePhone{background-image: url("./image/phone.png");}
+.backgroundImageProfile{background-image: url("./image/profile.png");}
 .marginTop0{margin-Top: 0;}
 .marginBot0{margin-Bottom: 0;}
+.marginRight150p{margin-right: 150px;}
 .textBold{font-weight: 700}
 .textNormal{font-weight: 300}
 .transformS0{transform: scale(.7)}
@@ -177,13 +171,13 @@ body{
 	
 	height: 100%;
 }
-.generalTextLinke8f4d9NoResize{
+.generalTextLink354719NoResize{
 	float: left;
 	
 	margin: 0;
 	margin-left: 5%;
 	
-	color: #e8f4d9;
+	color: #354719;
 	font-size: 120%;
 }
 .OnMenuHeaderGeneral{
@@ -209,6 +203,9 @@ body{
 	
 	height: 100%;
 	object-fit: cover;
+}
+.buttonLikeSize{
+	padding: 5px;
 }
 
 #indexHeaderButton{
@@ -237,6 +234,15 @@ body{
 	white-space: nowrap;
 }
 
+.smallHoverLikeButton:hover{
+	background-color: rgba(100,150,116, .8);
+	color: #ade781;
+	border-radius: 10px;
+}
 .submitButtomForm:hover{
 	background-color: #8ab36b;
 }
+
+
+/* Presets */
+.presetAbsoluteNOWHERE{display: none;}

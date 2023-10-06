@@ -14,16 +14,16 @@
 				<h2 id="NomeHeaderGeneral">Hortelã</h2>
 			</a>
 			
-			<div class="OnMenuHeaderGeneral floatGenericRight">
-				<a href="index" id="genericfitheader">
-					<div class="generalIconBText">
-						<img src="./static/image/megaphone.png"></img>
-					</div>
-					<h2 class="generalTextLinke8f4d9NoResize">Fale Conosco</h2>
+			<div class="OnMenuHeaderGeneral floatGenericRight flexCenterVertical marginRight150p">
+				<a href="profile" class="floatLeft flexCenterVertical">
+					<span class="backgroundImageSpan backgroundImageProfile"></span>
+				</a>
+				<a href="profile/logout" class="buttonLikeSize color3a7c4f linkNullS smallHoverLikeButton">
+					Sair da conta
 				</a>
 			</div>
 		</header>
-		<!--This type of header doesn't have login-->
+		<!-- This header has FIXED profile/login things -->
 		
 		<main>
 			<div class="marginAuto flexCol width500p heightAuto colorBlack">
@@ -36,30 +36,32 @@
 					</br>
 					
 					<h3 class="fontCourier textNormal marginTop0 color3a7c4f">
-						<span class="backgroundImagePinLocation floatLeft">‎</span>
+						<span class="backgroundImageSpan backgroundImagePin floatLeft">‎</span>
 						
 						{{u[4]}}
 					</h3>
 						
-					<h3 class="fontCourier textNormal marginTop0 color3a7c4f" id="telephoneProfile">
-						<span class="backgroundPhoneMailLocation floatLeft">‎</span>
+					<h3 class="fontCourier textNormal marginTop0 color3a7c4f">
+						<span class="backgroundImageSpan backgroundImagePhone floatLeft">‎</span>
 						{{u[3]}}
 					</h3>
 				</div>
-				
-				<div>
-				</div>
-			</div>
-			<footer>
+			</div>		
+		</main>
+		
+		<footer>
 				<div class="footerComp">
 					<h4 class="topM">----------------------------------------------------------</h4>
-					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos.html">termos de uso</a></h4>
+					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos">termos de uso</a></h4>
 				</div>
 				<div class="footerComp">
 					<h4 class="topM">----------------------------------------------------------</h4>
-					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos.html">termos de privacidade</a></h4>
+					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos">termos de privacidade</a></h4>
 				</div>
-				<div class="footerComp"></br></br></br></div>
+				<div class="footerComp">
+					<h4 class="topM">---------------------------------------</h4>
+					<h4>Com duvidas? <a href="ajuda">Fale Conosco</a></h4>
+				</div>
 				
 				<div class="footerComp">
 					<h4 class="topM">----Permaneça Conectado----</h4>
@@ -79,8 +81,6 @@
 					</div>
 				</div>
 			</footer>
-		</main>
-		
 		
 	</body>
 </html>

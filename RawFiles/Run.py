@@ -14,6 +14,16 @@ app = flask.Flask(__name__, template_folder=os.path.join(basePath, 'templates'),
 configurationsInfoTXT = json.load(open("config.txt"))
 
 cok = None
+def loadCok(email, passw, nome, tel=None, end=None):
+    global cok
+
+    cok = [email, passw, nome, tel, end]
+    for i, k in enumerate(cok):
+        if k == None:
+            cok[i] = "Não Defenido"
+def unloadCok():
+    global cok
+    cok = None
 
 # No url redirect
 @app.route('/')
@@ -21,10 +31,10 @@ def empt():
     return flask.redirect('index')
 @app.route('/index')
 def index():
-    return flask.render_template("index.html")
+    return flask.render_template("index.html", u=cok)
 @app.route('/login')
 def login():
-    return flask.render_template("login.html")
+    return flask.render_template("login.html", u=cok)
 @app.route('/sign')
 def sign():
     return flask.render_template("sign.html")
@@ -34,6 +44,10 @@ def profileH():
         return flask.redirect('/login')
     else:
         return flask.render_template('profile.html', u=cok)
+@app.route('/profile/logout')
+def logout():
+    unloadCok()
+    return flask.redirect("/login")
 @app.route('/redefinePass')
 def redPass():
     return flask.render_template("redefinir.html")
@@ -75,12 +89,7 @@ def loginR():
         if r == None:
             return flask.redirect("/login?error=1")
         else:
-            global cok
-
-            cok = [email, passw, r[1], r[4], r[5]]
-            for i,k in enumerate(cok):
-                if k == None:
-                    cok[i] = "Não Defenido"
+            loadCok(email, passw, r[1], r[4], r[5])
 
             return flask.redirect('/profile')
 @app.route('/redefinePass/send', methods=['POST'])
