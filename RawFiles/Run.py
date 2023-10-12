@@ -20,7 +20,7 @@ def loadCok(email, passw, nome, tel=None, end=None):
     cok = [email, passw, nome, tel, end]
     for i, k in enumerate(cok):
         if k == None:
-            cok[i] = "Não Defenido"
+            cok[i] = "Não Definido"
 def unloadCok():
     global cok
     cok = None
@@ -52,7 +52,7 @@ def logout():
 def redPass():
     return flask.render_template("redefinir.html")
 
-# Form things
+# Form send
 @app.route('/sign/send', methods=['POST'])
 def registerF():
     # Register
@@ -114,6 +114,43 @@ def redifPass():
             c.execute("UPDATE user SET pass = ? WHERE email = ? and pass = ?", (passw, email, Opassw))
 
             return flask.redirect("/login")
+@app.route('/profile/send', methods=['POST'])
+def editProfile():
+    Oemail = flask.request.form.get('Oemail')
+    email = flask.request.form.get('email')
+    end = flask.request.form.get('end')
+    tel = flask.request.form.get('tel')
+    nome = flask.request.form.get('name')
+
+    if tel == "Não Definido":
+        tel = None
+    if end == "Não Definido":
+        end = None
+
+    # Recreate connection each time to prevent threading issues
+    with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+        c = conn.cursor()
+
+        loadCok(email, cok[1], nome, tel, end)
+
+        if Oemail == email:
+            c.execute("UPDATE user SET nome = ?, telefone = ?, endereco = ?"
+                      "WHERE email = ?", (nome, tel, end, email))
+
+            return flask.redirect("/profile")
+        else:
+            # Bypass the sql-injection
+            c.execute("SELECT * FROM user WHERE email = ?", (email,))
+            r = c.fetchone()
+
+            if r == None:
+                c.execute("UPDATE user SET nome = ?, email = ?, telefone = ?, endereco = ?"
+                          "WHERE email = ?", (nome, email, tel, end, Oemail))
+
+                return flask.redirect("/profile")
+
+            else:
+                return flask.redirect(f"/profile?error=1")
 
 if __name__ == '__main__':
     ip = configurationsInfoTXT['ip']

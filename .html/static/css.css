@@ -27,7 +27,12 @@ body{
 	
 	font-family: arial;
 }
+br .littleMore{margin-top: 10px;}
 
+.width100{width: 100%;}
+.fontSize25p{font-size: 25px}
+.fontSize20p{font-size: 20px}
+.fontSize16p{font-size: 16px}
 .color3a7c4f{color: #3a7c4f;}
 .backgroundImageSpan{
 	background-repeat: no-repeat;
@@ -40,8 +45,9 @@ body{
 .backgroundImagePin{background-image: url("./image/pin.png");}
 .backgroundImagePhone{background-image: url("./image/phone.png");}
 .backgroundImageProfile{background-image: url("./image/profile.png");}
-.marginTop0{margin-Top: 0;}
+.marginTop0{margin-top: 0;}
 .marginBot0{margin-Bottom: 0;}
+.flexFit1{flex: 1;}
 .marginRight150p{margin-right: 150px;}
 .textBold{font-weight: 700}
 .textNormal{font-weight: 300}
@@ -116,15 +122,21 @@ body{
 	
 	transition: .3s;
 }
+.marginLeft18{margin-left: 18%}
 .formInput{
 	width: 100%;
 	height: 25px;
 	
 	border: 2px #759f56 solid;
 	border-radius: 5px;
-	
-	margin: auto;
 }
+.widthAuto{width: auto;}
+.fakeInputDisabled{
+	background-color: rgba(0,0,0,0);
+	border-color: rgba(0,0,0,0);
+}
+.marginBot5p{margin-Bottom: 5px;}
+.marginTop8p{margin-top: 8px;}
 .formDiv{
 	width: 20%;
 	border-radius: 20px;
