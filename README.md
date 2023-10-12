@@ -34,8 +34,8 @@ To do so, you can use **GIT** commands, if you dont know how to do so, heres how
 2. Select the directory to copy it
    - **cd /path/to/your/directory**
 3. Clone the Repository
-   - **git clone https://github.com/username/repository name.git**
-   - Replace username with the owner of the repository and repo_name with the name of the repository you want to clone.
+   - **git clone https://github.com/Keyozito/HortelaFinalPaper.git origin Branch**.
+   - Replace *Branch* with the desired branch.
 4. Wait for Cloning to Complete
    - Github will clone the repository to your *local machine*. Once the process is complete, you will have a *local copy* of the repository in the specified directory.
 
