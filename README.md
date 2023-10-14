@@ -1,6 +1,6 @@
 ![HortelaLong](https://github.com/HortelaFinalPaper/Hortela-Server/assets/124541297/e6528b94-aa6d-4222-841c-f7f18a844820)
 
-![Static Badge](https://img.shields.io/badge/Version-1.1-white?labelColor=%23fff&color=%235aa02c)
+![Static Badge](https://img.shields.io/badge/Version-1.2.5-white?labelColor=%23fff&color=%235aa02c)
 
 
 Bug founded? Suggestion? Check out the [form!](https://docs.google.com/forms/d/e/1FAIpQLSe7E4BD5KrTsHNDCq1aUhnUfxtI9J1ATuiD2UITPPdPbDUxwA/viewform)
@@ -34,8 +34,8 @@ To do so, you can use **GIT** commands, if you dont know how to do so, heres how
 2. Select the directory to copy it
    - **cd /path/to/your/directory**
 3. Clone the Repository
-   - **git clone https://github.com/username/repository name.git**
-   - Replace username with the owner of the repository and repo_name with the name of the repository you want to clone.
+   - **git clone https://github.com/Keyozito/HortelaFinalPaper.git origin Branch**.
+   - Replace *Branch* with the desired branch.
 4. Wait for Cloning to Complete
    - Github will clone the repository to your *local machine*. Once the process is complete, you will have a *local copy* of the repository in the specified directory.
 
