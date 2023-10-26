@@ -16,10 +16,10 @@ try:
     configurationsInfoTXT = json.load(open("config.txt"))
 
     cok = None
-    def loadCok(email, passw, nome, tel=None, end=None):
+    def loadCok(email, passw, nome, tel=None, end=None, access=1):
         global cok
 
-        cok = [email, passw, nome, tel, end]
+        cok = [email, passw, nome, tel, end, access]
         for i, k in enumerate(cok):
             if k == None:
                 cok[i] = "Não Definido"
@@ -37,7 +37,7 @@ try:
         return flask.render_template("index.html", u=cok)
     @app.route('/login')
     def login():
-        return flask.render_template("login.html", u=cok)
+        return flask.render_template("login.html")
     @app.route('/sign')
     def sign():
         return flask.render_template("sign.html")
@@ -54,18 +54,26 @@ try:
     @app.route('/redefinePass')
     def redPass():
         return flask.render_template("redefinir.html")
-    @app.route('/dltProf')
-    def deleteProfile():
-        if cok == None:
-            flask.redirect('/login')
-        else:
-            with sqlite3.connect( configurationsInfoTXT['data'] ) as conn:
-                c = conn.cursor()
-                c.execute("DELETE FROM user WHERE email = ?", (cok[1],))
-
-                flask.redirect('/login')
 
     # Form send
+    @app.route('/profile/dltProf', methods=['POST'])
+    def deleteProfile():
+        if cok == None:
+            return flask.redirect('/login')
+        else:
+            email = flask.request.form.get('emailD')
+            passw = flask.request.form.get('passD')
+            name = flask.request.form.get('nameD')
+
+            if email == cok[0] and passw == cok[1] and name == cok[2]:
+
+                with sqlite3.connect( configurationsInfoTXT['data'] ) as conn:
+                    c = conn.cursor()
+                    c.execute("DELETE FROM user WHERE email = ? AND pass = ? AND nome = ?", (email, passw, name))
+
+                    return flask.redirect('/login')
+            else:
+                return flask.redirect('/profile?error=2')
     @app.route('/sign/send', methods=['POST'])
     def registerF():
         # Register
@@ -102,7 +110,7 @@ try:
             if r == None:
                 return flask.redirect("/login?error=1")
             else:
-                loadCok(email, passw, r[1], r[4], r[5])
+                loadCok(email, passw, r[1], r[4], r[5], r[6])
 
                 return flask.redirect('/profile')
     @app.route('/redefinePass/send', methods=['POST'])
