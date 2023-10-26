@@ -3,7 +3,7 @@
 		<title>Hortelã - Horta Comunitaria</title>
 		<link href="./static/css.css" rel="stylesheet">
 		<link href="./static/image/icoi.ico" rel="icon">
-		<script src="./static/jsProfile.js"></script>
+		<script src="./static/jsProf.js"></script>
 	</head>
 	<body onLoad="validateForm()">
 		<header>
@@ -26,7 +26,7 @@
 		<!-- This header has FIXED profile/login things -->
 		
 		<main>
-			<div class="marginAuto flexCol width500p heightAuto colorBlack">
+			<div class="marginAuto flexRight width500p heightAuto colorBlack">
 				<div class="flexCol">
 					<img src="./static/image/profile.png" class="transformS0"></img>
 					
@@ -36,7 +36,7 @@
 						
 						<input type="text" class="fontCourier textBold width100 fakeInputDisabled fontSize25p formInput marginBot5p" placeholder="Nome" value="{{u[2]}}" id="nome" name="name" required disabled ></input>
 						</br>
-						<input type="text" class="fontCourier textNormal width100 fakeInputDisabled fontSize20p formInput" placeholder="E-mail" value="{{u[0]}}" id="email" name="email" required disabled></input>
+						<input type="email" class="fontCourier textNormal width100 fakeInputDisabled fontSize20p formInput" placeholder="E-mail" value="{{u[0]}}" id="email" name="email" required disabled></input>
 						</br></br>
 						
 						<button type="button" class="submitButtomForm marginLeft18" onClick="editActive()" id="edit">Editar Perfil</button>
@@ -52,46 +52,68 @@
 						<h4 type="text" class="fontCourier textNormal marginTop0 flexCenterVertical">
 							<span class="backgroundImageSpan backgroundImagePhone floatLeft">‎</span>
 							
-							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="EX: 11 1234-5678" value="{{u[3]}}" id="tel" pattern="[0-9]{2} [0-9]{4}-[0-9]{4}" name="tel" disabled></input>
+							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="EX: 11 1234-5678" value="{{u[3]}}" id="tel" pattern="[0-9]{2} [0-9]{4,5}-[0-9]{4}" name="tel" disabled></input>
 						</h4>
+						
+						<button type="button" onclick="popUp()" class="submitButtomForm marginLeft18 warningbutton smallButtom" id="delete" style="display:none">Apagar Conta</button>
 					</form>
+					<!-- Delete Account Things -->
+					<div class="popUpBack" id="popUpB">
+						<form class="popUp width500p heightAuto leftText radius10p" id="popUpWindow" action="profile/dltProf" target="_self" method="post">
+							<br/>
+							<h5 class="marginTop0 color747474">Digite suas informações.</h5>
+							
+							<label>Nome:</label>
+							<input type="text" class="fontCourier textBold width100 fontSize25p formInput marginBot5p" id="nomeD" name="nameD" required ></input>
+							</br></br>
+							
+							<label>E-mail:</label>
+							<input type="text" class="fontCourier textBold width100 fontSize25p formInput marginBot5p" id="emailD" name="emailD" required ></input>
+							</br></br>
+							
+							<label>Senha:</label>
+							<input type="text" class="fontCourier textBold width100 fontSize25p formInput marginBot5p" id="passD" name="passD" required ></input>
+							</br></br>
+							
+							<button type="submit" class="submitButtomForm marginLeft18 warningbutton" onClick="deleteACNT()">Apagar Conta</button>
+							</br></br>
+							<button type="button" class="submitButtomForm marginLeft18 smallButtom" onClick="popDown()">Cancelar</button>
+							</br></br></br>
+						</form>
+					</div>
 				</div>
+				
 			</div>		
 		</main>
 		
 		<footer>
-				<div class="footerComp">
-					<h4 class="topM">----------------------------------------------------------</h4>
-					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos">termos de uso</a></h4>
-				</div>
-				<div class="footerComp">
-					<h4 class="topM">----------------------------------------------------------</h4>
-					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos">termos de privacidade</a></h4>
-				</div>
-				<div class="footerComp">
-					<h4 class="topM">---------------------------------------</h4>
-					<h4>Com duvidas? <a href="ajuda">Fale Conosco</a></h4>
-				</div>
-				
-				<div class="footerComp">
-					<h4 class="topM">----Permaneça Conectado----</h4>
-					<div class="flexRight">
-						<div class="flexCol">
-							<h4>Instagram:</h4>
-							<a href="">@HortaHortela</a>
-						</div>
-						<div class="flexCol">
-							<h4>Facebook:</h4>
-							<a href="">@HortasHortela</a>
-						</div>
-						<div class="flexCol">
-							<h4>Twitter:</h4>
-							<a href="">@HortelanHortas</a>
-						</div>
+			<div class="footerComp">
+				<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="/termos">termos de uso</a></h4>
+			</div>
+			<div class="footerComp">
+				<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="/termos">termos de privacidade</a></h4>
+			</div>
+			<div class="footerComp">
+				<h4>Com duvidas? <a href="/contact">Fale Conosco</a></h4>
+			</div>
+			
+			<div class="footerComp">
+				<div class="flexRight">
+					<div class="flexCol">
+						<h4>Instagram:</h4>
+						<a href="">@HortaHortela</a>
+					</div>
+					<div class="flexCol">
+						<h4>Facebook:</h4>
+						<a href="">@HortasHortela</a>
+					</div>
+					<div class="flexCol">
+						<h4>Twitter:</h4>
+						<a href="">@HortelanHortas</a>
 					</div>
 				</div>
-			</footer>
-		
+			</div>
+		</footer>
 	</body>
 </html>
 <!-------

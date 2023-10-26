@@ -8,7 +8,5 @@ function validateForm(){
 		
 		n.style.border = ("solid 2px red");
 		s.style.border = ("solid 2px red");
-		
-		console.log("ayo")
 	}
 };

@@ -41,45 +41,101 @@
 		</header>
 		<!-- This header has JAVA profile/login things -->
 		
-		<main>
-			<a href="/login">Login</a></br>
-			<a href="/sign">Sign</a></br>
-			<a href="/redefinePass">RePass</a></br>
-			<a href="/profile">Profile</a>
+		<main class="flexCenterContent flexcoll">
+			<ul class="horizontalMenuList">
+				<a href="/planos">Planos</a>
+				<a href="/index#sobre">Sobre Nós</a>
+				<a href="/profile">Hortas</a>
+				<a href="/contact">Fale Conosco</a>
+				<a href="/index#ajuda">Ajuda</a>
+			</ul>
+			</br>
+			
+			<div class="displayindex">
+				<img src="./static/image/mainIndex.png"></img>
+				<div class="cornerRectangle centerText">Hortelã - Horta Urbana</div>
+			</div>
+			
+			<div class="indexSection" id="sobre">
+				<h1 class="fontCourier centerText">- Oque é a Hortelã? -</h1>
+				
+				<img src="./static/image/HortelaLong.png" class="heightAuto width80"></img>
+				</br>
+				
+				<h3 class="backgroundededed padding15px paddingVertica50px centerText textNormal">
+					A Hortelã é um projeto de horta urbana que induz a sustentabilidade pela a produção de alimentos sem prejudicar o nosso meio ambiente. Nosso projeto é um sistema que oferece monitoramento e serviços ao usuário em sua parte da horta, e nele também concede uma comunidade onde visa a comunicação entre os usuários, tudo isso de forma segura e de fácil acesso.
+				</h3>
+			</div>
+			
+			<div class="indexSection" id="ajuda">
+				<h1 class="fontCourier centerText">- Perguntas Frequentes -</h1>
+				
+				<div class="flexRight">
+					<div class="width500p paddingHorizontal15px centerText">
+						<div class="topTabBorder">
+							<h3 class="width100 marginBot0">1. Não consigo finalizar meu pedido.</h3>
+							<h4 class="marginTop0 color747474">Siga as orientações abaixo.</h4>
+						</div>
+						
+						<ol>
+							<li>Certifique-se de que selecionou a forma de pagamento, plano e o número de parcelas correspondente aos dos dados solicitados.</li></br>
+							<li>Certifique-se se os dados pessoais e informacionais solicitados foram foi digitados corretamente.</li></br>
+							<li>Certifique-se de que contanha saldo suficiente em sua conta para finalizar o pagamento.</li></br>
+							<li>Certifique-se se há limite disponivel no metodo usado, ou saldo disponivel.</li>
+						</ol>
+						
+						<div class="bottomTabBorder"></div>
+					</div>
+					
+					<div class="width500p paddingHorizontal15px centerText marginleft150px">
+						<div class="topTabBorder">
+							<h3 class="width100 marginBot0">2. Não consigo acessar meu login.</h3>
+							<h4 class="marginTop0 color747474">Siga as orientações abaixo.</h4>
+						</div>
+						
+						<ol>
+							<li>Certifique-se de que a tecla Caps Lock não está ativada. As senhas diferenciam minúsculas de maiúsculas.</li></br>
+							<li>Certifique-se de digitar a senha correta. Caso não se lembre da senha, você poderá redefinir a sua senha de usuário <a class="color649674" href="/redefinePass">aqui</a>.</li></br>
+							<li>Certifique-se de fazer logon na conta que corresponde à senha utilizada, por tanto, verifique seus dados. Se não tiver conta realize o cadastro <a class="color649674" href="/sign">aqui</a>.</li>
+						</ol>
+						
+						<div class="bottomTabBorder"></div>
+					</div>
+				</div>
+			
+				</br></br></br></br>
+				<h5>Não ajudou? <a class="color649674" href="/contact">Fale conosco!</a></h5>
+			</div>
 		</main>
 		
 		<footer>
-				<div class="footerComp">
-					<h4 class="topM">----------------------------------------------------------</h4>
-					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos">termos de uso</a></h4>
-				</div>
-				<div class="footerComp">
-					<h4 class="topM">----------------------------------------------------------</h4>
-					<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="termos">termos de privacidade</a></h4>
-				</div>
-				<div class="footerComp">
-					<h4 class="topM">---------------------------------------</h4>
-					<h4>Com duvidas? <a href="ajuda">Fale Conosco</a></h4>
-				</div>
-				
-				<div class="footerComp">
-					<h4 class="topM">----Permaneça Conectado----</h4>
-					<div class="flexRight">
-						<div class="flexCol">
-							<h4>Instagram:</h4>
-							<a href="">@HortaHortela</a>
-						</div>
-						<div class="flexCol">
-							<h4>Facebook:</h4>
-							<a href="">@HortasHortela</a>
-						</div>
-						<div class="flexCol">
-							<h4>Twitter:</h4>
-							<a href="">@HortelanHortas</a>
-						</div>
+			<div class="footerComp">
+				<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="/termos">termos de uso</a></h4>
+			</div>
+			<div class="footerComp">
+				<h4>Ao acessar e utilizar nosso site você </br>concorda com nossos <a href="/termos">termos de privacidade</a></h4>
+			</div>
+			<div class="footerComp">
+				<h4>Com duvidas? <a href="/contact">Fale Conosco</a></h4>
+			</div>
+			
+			<div class="footerComp">
+				<div class="flexRight">
+					<div class="flexCol">
+						<h4>Instagram:</h4>
+						<a href="">@HortaHortela</a>
+					</div>
+					<div class="flexCol">
+						<h4>Facebook:</h4>
+						<a href="">@HortasHortela</a>
+					</div>
+					<div class="flexCol">
+						<h4>Twitter:</h4>
+						<a href="">@HortelanHortas</a>
 					</div>
 				</div>
-			</footer>
+			</div>
+		</footer>
 	</body>
 </html>
 <!-------
