@@ -29,14 +29,6 @@ function editActive(){
 	tel.disabled = false;
 };
 
-function accessCheck(){
-	var access = {{u[5] | tojson | safe}};
-	
-	if (access == 3){
-		
-	}
-};
-
 function correctEmpty(){
 	var nome = document.getElementById("nome");
 	var email = document.getElementById("email");
