@@ -5,6 +5,7 @@ function editActive(){
 	var email = document.getElementById("email");
 	var end = document.getElementById("end");
 	var tel = document.getElementById("tel");
+	var cpf = document.getElementById("cpf");
 	var del = document.getElementById("delete");
 	
 	editButton.style.display = "none";
@@ -15,6 +16,7 @@ function editActive(){
 	email.classList.remove("fakeInputDisabled");
 	end.classList.remove("fakeInputDisabled");
 	tel.classList.remove("fakeInputDisabled");
+	cpf.classList.remove("fakeInputDisabled");
 	
 	if(end.value == "Não Definido"){
 		end.value = ""
@@ -27,11 +29,10 @@ function editActive(){
 	email.disabled = false;
 	end.disabled = false;
 	tel.disabled = false;
+	cpf.disabled = false;
 };
 
 function correctEmpty(){
-	var nome = document.getElementById("nome");
-	var email = document.getElementById("email");
 	var end = document.getElementById("end");
 	var tel = document.getElementById("tel");
 	
@@ -50,6 +51,7 @@ function resetAll(){
 	var email = document.getElementById("email");
 	var end = document.getElementById("end");
 	var tel = document.getElementById("tel");
+	var cpf = document.getElementById("cpf");
 	var del = document.getElementById("delete");
 	
 	editButton.style.display = "inline-block";
@@ -60,11 +62,13 @@ function resetAll(){
 	email.classList.add("fakeInputDisabled");
 	end.classList.add("fakeInputDisabled");
 	tel.classList.add("fakeInputDisabled");
+	cpf.classList.add("fakeInputDisabled");
 	
 	nome.disabled = true;
 	email.disabled = true;
 	end.disabled = true;
 	tel.disabled = true;
+	cpf.disabled = true;
 }
 
 function popUp(){

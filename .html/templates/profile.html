@@ -9,9 +9,12 @@
 		<header>
 			<a href="index" class="OnMenuHeaderGeneral floatGenericLeft" id="indexHeaderButton">
 				<div class="imgContainerMenuHeader">
-					<img src="./static/image/mainPikini.png"></img>
+					<img src="./static/image/headerB.png" class="flip marginright20px"></img>
+					<img src="./static/image/icop.png"></img>
+					<img src="./static/image/headerB.png" class="marginleft20px"></img>
+					
+					<img src="./static/image/logoWide.png" class="marginleft150px"></img>
 				</div>
-				<h2 id="NomeHeaderGeneral">Hortelã</h2>
 			</a>
 			
 			<div class="OnMenuHeaderGeneral floatGenericRight flexCenterVertical marginRight150p">
@@ -26,36 +29,43 @@
 		<!-- This header has FIXED profile/login things -->
 		
 		<main>
-			<div class="marginAuto flexRight width500p heightAuto colorBlack">
-				<div class="flexCol">
-					<img src="./static/image/profile.png" class="transformS0"></img>
+			<div class="marginAuto flexRight width500p heightAuto colorBlack flexEnd">
+				<div class="flexC2 fitFormProf">
+					<img src="./static/image/profile.png" class="transformS0 borderRoundYeah"></img>
 					
-					<form action="profile/send" method="post" target="_self" onsubmit="correctEmpty()">
+					<form class="margintop50" action="profile/send" method="post" target="_self" onsubmit="correctEmpty()">
 						<input type="text" value="{{u[0]}}" name="Oemail" style="display: none"></input>
-						<!-- Server Aside Things -->
+						<!-- Save old email for the server -->
 						
 						<input type="text" class="fontCourier textBold width100 fakeInputDisabled fontSize25p formInput marginBot5p" placeholder="Nome" value="{{u[2]}}" id="nome" name="name" required disabled ></input>
 						</br>
 						<input type="email" class="fontCourier textNormal width100 fakeInputDisabled fontSize20p formInput" placeholder="E-mail" value="{{u[0]}}" id="email" name="email" required disabled></input>
 						</br></br>
 						
-						<button type="button" class="submitButtomForm marginLeft18" onClick="editActive()" id="edit">Editar Perfil</button>
-						<button type="submit" class="submitButtomForm marginLeft18" id="save" style="display:none">Salvar Perfil</button>
-						</br></br>
-						
 						<h4 type="text" class="fontCourier textNormal marginTop0 flexCenterVertical">
 							<span class="backgroundImageSpan backgroundImagePin floatLeft">‎</span>
 							
-							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="Cidade, Bairro, Rua, Numero" value="{{u[4]}}" id="end" name="end" disabled></input>
+							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="Cidade, Bairro, Rua, Numero" value="{{u[5]}}" id="end" name="end" disabled></input>
 						</h4>
 							
 						<h4 type="text" class="fontCourier textNormal marginTop0 flexCenterVertical">
 							<span class="backgroundImageSpan backgroundImagePhone floatLeft">‎</span>
 							
-							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="EX: 11 1234-5678" value="{{u[3]}}" id="tel" pattern="[0-9]{2} [0-9]{4,5}-[0-9]{4}" name="tel" disabled></input>
+							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="EX: 11 1234-5678" value="{{u[4]}}" id="tel" pattern="[0-9]{2} [0-9]{4,5}-[0-9]{4}" name="tel" disabled></input>
 						</h4>
 						
+						<h4 type="text" class="fontCourier textNormal marginTop0 flexCenterVertical">
+							<span class="backgroundImageSpan backgroundImageId floatLeft">‎</span>
+							
+							<input type="text" class="fakeInputDisabled	widthAuto color3a7c4f fontSize16p formInput flexFit1" placeholder="12345678910" value="{{u[3]}}" id="cpf" pattern="\d{11}" name="cpf" disabled></input>
+						</h4>
+						
+						<button type="button" class="submitButtomForm marginLeft18" onClick="editActive()" id="edit">Editar Perfil</button>
+						<button type="submit" class="submitButtomForm marginLeft18" id="save" style="display:none">Salvar Perfil</button>
+						</br></br>	
+						
 						<button type="button" onclick="popUp()" class="submitButtomForm marginLeft18 warningbutton smallButtom" id="delete" style="display:none">Apagar Conta</button>
+						
 					</form>
 					<!-- Delete Account Things -->
 					<div class="popUpBack" id="popUpB">
