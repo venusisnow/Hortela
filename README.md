@@ -1,4 +1,5 @@
-![HortelaLong](.html/static/image/HortelaLong.png)
+![logoWideS](https://github.com/user-attachments/assets/3e728d46-b35c-4bbd-a1b1-568dafbca69d)
+
 
 ![Static Badge](https://img.shields.io/badge/Version-1.6.3-white?labelColor=%23ff&color=%235aa02c)
 
