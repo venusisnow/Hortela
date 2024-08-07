@@ -1,52 +1,59 @@
 CREATE DATABASE dbHort;
 use dbHort;
 
-CREATE TABLE hortas (
-  horta_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  endereço varchar(50)
-);
-
 CREATE TABLE user (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   
   nome varchar(50) not null,
-  email varchar(50) not null,
-  pass varchar(25) not null,
-  
+  email varchar(100) not null,
+  endereco varchar(100),
+  cpf int(11),
   telefone varchar(12),
-  endereco varchar(50),
   
-  access int(1) NOT NULL, /*1-Cliente, 2-FuncTerra, 3-ADM*/
-  
-  horta_id INTEGER,
-  FOREIGN KEY (horta_id) REFERENCES hortas(horta_id)
-);
+  pass varchar(25) not null,
+  access int(1) NOT NULL
+)
 
-CREATE TABLE agendas (
-  agenda_id INTEGER PRIMARY KEY NOT NULL,
-  data date(10) NOT null,
-  conteudo varchar(200) NOT null,
+CREATE TABLE voluntario (
+  vol_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   
-  user_id int(5),
+  dataDisp date(10) NOT null,
+  tipo varchar(50) NOT null,
+  
+  user_id INTEGER,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
+)
 
-CREATE TABLE recibos (
-  pag_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  type int(1) NOT null, /*1-Semente, 2-Fruto, 3-Cerejeira*/
-  valor varchar(6) Not null, /*999,99*/
-  expire date(10) NOT null,
+CREATE TABLE calendarioVol (
+  calendVol_id INTEGER PRIMARY KEY NOT NULL,
   
-  paym_Type varchar(3) Not null,
-  paym_Status int(2) Not null, /* 1-Paid, 2-NotPaid */
+  data date(10) NOT null,
+  tipo varchar(50) NOT null,
+  quantidade int(100) NOT null
+)
+
+CREATE TABLE horta (
+  horta_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  endereço varchar(255) NOT null
+)
+
+CREATE TABLE cesta (
+  cesta_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  
+  alimentos varchar(200) Not null,
+  status varchar(10) Not null,
 
   user_id INTEGER,
   FOREIGN KEY (user_id) REFERENCES user(user_id)
-);
+)
 
-/* Admin login standar */
-INSERT INTO user (user_id, nome, email, pass, access)
-VALUES (1, 'root', 'admin@adm.com', 'mikemike', 3);
+CREATE TABLE calendarioDist (
+  dist_id INTEGER PRIMARY KEY NOT NULL,
+  
+  local varchar(100) NOT null,
+  data date(10) NOT null,
+  alimento varchar(200) NOT null
+)
 
-DELETE FROM user WHERE nome = 'root';
-SELECT * FROM user WHERE nome = 'root' AND pass = 'mikemike';
+INSERT INTO user (nome, email, cpf, pass, access)
+VALUES ('Root', 'admin@adm.com', 'mypass', 1);
