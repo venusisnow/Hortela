@@ -16,10 +16,10 @@ try:
     configurationsInfoTXT = json.load(open("config.txt"))
 
     cok = None
-    def loadCok(email, passw, nome, tel=None, end=None, access=1):
+    def loadCok(email, passw, nome, cpf, tel=None, end=None, access=1):
         global cok
 
-        cok = [email, passw, nome, tel, end, access]
+        cok = [email, passw, nome, cpf, tel, end, access]
         for i, k in enumerate(cok):
             if k == None:
                 cok[i] = "Não Definido"
@@ -54,6 +54,15 @@ try:
     @app.route('/redefinePass')
     def redPass():
         return flask.render_template("redefinir.html")
+    @app.route('/erro')
+    def erro():
+        return flask.render_template("erro.html")
+    @app.route('/doacao')
+    def doacao():
+        return flask.render_template("doacao.html")
+    @app.route('/contact')
+    def contact():
+        return flask.render_template("contact.html")
 
     # Form send
     @app.route('/profile/dltProf', methods=['POST'])
@@ -110,7 +119,7 @@ try:
             if r == None:
                 return flask.redirect("/login?error=1")
             else:
-                loadCok(email, passw, r[1], r[4], r[5], r[6])
+                loadCok(email, passw, r[1], r[4], r[3], r[5], r[7])
 
                 return flask.redirect('/profile')
     @app.route('/redefinePass/send', methods=['POST'])
@@ -142,6 +151,7 @@ try:
         end = flask.request.form.get('end')
         tel = flask.request.form.get('tel')
         nome = flask.request.form.get('name')
+        cpf = flask.request.form.get('cpf')
 
         if tel == "Não Definido":
             tel = None
@@ -152,7 +162,7 @@ try:
         with sqlite3.connect(configurationsInfoTXT['data']) as conn:
             c = conn.cursor()
 
-            loadCok(email, cok[1], nome, tel, end)
+            loadCok(email, cok[1], nome, cpf, tel, end)
 
             if Oemail == email:
                 c.execute("UPDATE user SET nome = ?, telefone = ?, endereco = ?"
