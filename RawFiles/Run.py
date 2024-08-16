@@ -9,13 +9,17 @@ try:
     import sqlite3
     import os
     import json
-
+    import smtplib
+    from email.message import EmailMessage
+    import ssl
+    import random
 
     basePath = os.getcwd()
     app = flask.Flask(__name__, template_folder=os.path.join(basePath, 'templates'), static_folder=os.path.join(basePath, 'static'))
     configurationsInfoTXT = json.load(open("config.txt"))
 
     cok = None
+    tempcod = None
     def loadCok(email, passw, nome, cpf, tel=None, end=None, access=1):
         global cok
 
@@ -52,7 +56,7 @@ try:
         unloadCok()
         return flask.redirect("/login")
     @app.route('/redefinePass')
-    def redPass():
+    def rediPass():
         return flask.render_template("redefinir.html")
     @app.route('/erro')
     def erro():
@@ -63,6 +67,9 @@ try:
     @app.route('/contact')
     def contact():
         return flask.render_template("contact.html")
+    @app.route('/code')
+    def redefinecodeV():
+        return flask.render_template("redefinircod.html", u=tempcod)
 
     # Form send
     @app.route('/profile/dltProf', methods=['POST'])
@@ -122,28 +129,6 @@ try:
                 loadCok(email, passw, r[1], r[4], r[3], r[5], r[7])
 
                 return flask.redirect('/profile')
-    @app.route('/redefinePass/send', methods=['POST'])
-    def redifPass():
-        # Change Pass
-        email = flask.request.form.get('email')
-        passw = flask.request.form.get('password')
-        Opassw = flask.request.form.get('oldPass')
-
-        # Recreate connection each time to prevent threading issues
-        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
-            c = conn.cursor()
-
-            # Bypass the sql-injection
-            c.execute("SELECT * FROM user WHERE email = ? AND pass = ?", (email, Opassw))
-            r = c.fetchone()
-
-            if r == None:
-                return flask.redirect(f"/redefinePass?error=1")
-
-            else:
-                c.execute("UPDATE user SET pass = ? WHERE email = ? and pass = ?", (passw, email, Opassw))
-
-                return flask.redirect("/login")
     @app.route('/profile/send', methods=['POST'])
     def editProfile():
         Oemail = flask.request.form.get('Oemail')
@@ -182,6 +167,104 @@ try:
 
                 else:
                     return flask.redirect(f"/profile?error=1")
+    @app.route('/contact/send', methods=['POST'])
+    def contatSend():
+        eS = 'hortelaurbana@gmail.com'
+        eP = 'qyyq cdht mkzv eguy'
+        eM = flask.request.form.get('email')
+        ass = flask.request.form.get('ass')
+
+        s = f'Ticket de Ajuda {datetime.date.today()}'
+        b = f"""
+            🌱🌿  Obrigado por nos contatar! iremos fazer o possivel sobre o assunto 🌻☀
+
+            Menssagem:     
+
+            {ass}
+        """
+
+        em = EmailMessage()
+        em['From'] = eS
+        em['To'] = eM
+        em['Subject'] = s
+        em.set_content(b)
+
+        c = ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=c) as smtp:
+            smtp.login(eS, eP)
+            smtp.sendmail(eS, eM, em.as_string())
+            # To myself / Mods
+
+            b = f"""
+                🌱🌿  Hortelã ticket fale conosco 🌻☀
+                De: {eM}
+                Menssagem:  
+
+                {ass}
+            """
+
+            em.set_content(b)
+            smtp.sendmail(eS, eS, em.as_string())
+
+        return flask.redirect("/index")
+    @app.route('/redefinePass/send', methods=['POST'])
+    def perdeuasenha():
+        eM = flask.request.form.get('email')
+
+        # Recreate connection each time to prevent threading issues
+        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+            c = conn.cursor()
+            c.execute("SELECT * FROM user WHERE email = ?", (eM,))
+            r = c.fetchone()
+
+            if r == None:
+                return flask.redirect("/redefinePass?error=1")
+            else:
+                global tempcod
+                eS = 'hortelaurbana@gmail.com'
+                eP = 'qyyq cdht mkzv eguy'
+                ass = random.randint(1000, 9998)
+                ePa = flask.request.form.get('pass1')
+                tempcod = [ass, eM, ePa]
+
+                s = f'Ticket de Ajuda {datetime.date.today()}'
+                b = f"""
+                            🌱🌿  Codigo de confirmação para redefinir senha 🌻☀
+                            Código expira após 5 minutos   
+        
+                            {ass}
+                        """
+
+                em = EmailMessage()
+                em['From'] = eS
+                em['To'] = eM
+                em['Subject'] = s
+                em.set_content(b)
+
+                c = ssl.create_default_context()
+
+                with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=c) as smtp:
+                    smtp.login(eS, eP)
+                    smtp.sendmail(eS, eM, em.as_string())
+
+                return flask.redirect('/code')
+    @app.route('/redefinePassC/send', methods=['POST'])
+    def mudarsenha():
+        global tempcod
+        
+        # Register
+        eM = tempcod[1]
+        ePa = tempcod[2]
+
+        tempcod = None
+
+        # Recreate connection each time to prevent threading issues
+        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+            c = conn.cursor()
+            c.execute("UPDATE user SET pass = ? WHERE email = ?", (ePa,eM))
+
+            return flask.redirect("/login")
 
     if __name__ == '__main__':
         ip = configurationsInfoTXT['ip']
