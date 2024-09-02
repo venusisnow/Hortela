@@ -1,4 +1,5 @@
 import datetime
+
 try:
     import click
     import itsdangerous
@@ -15,61 +16,119 @@ try:
     import random
 
     basePath = os.getcwd()
-    app = flask.Flask(__name__, template_folder=os.path.join(basePath, 'templates'), static_folder=os.path.join(basePath, 'static'))
+    app = flask.Flask(__name__, template_folder=os.path.join(basePath, 'templates'),
+                      static_folder=os.path.join(basePath, 'static'))
     configurationsInfoTXT = json.load(open("config.txt"))
 
     cok = None
     tempcod = None
-    def loadCok(email, passw, nome, cpf, tel=None, end=None, access=1):
+
+
+    def loadCok(email, passw, nome, cpf, tel=None, end=None, access=0):
         global cok
 
         cok = [email, passw, nome, cpf, tel, end, access]
         for i, k in enumerate(cok):
             if k == None:
                 cok[i] = "Não Definido"
+
+
     def unloadCok():
         global cok
         cok = None
+
 
     # No url redirect
     @app.route('/')
     def empt():
         return flask.redirect('index')
 
+
     @app.route('/index')
     def index():
         return flask.render_template("index.html", u=cok)
+
+
     @app.route('/login')
     def login():
         return flask.render_template("login.html")
+
+
     @app.route('/sign')
     def sign():
         return flask.render_template("sign.html")
+
+
     @app.route('/profile')
     def profileH():
         if cok is None:
             return flask.redirect('/login')
         else:
             return flask.render_template('profile.html', u=cok)
+
+
     @app.route('/profile/logout')
     def logout():
         unloadCok()
         return flask.redirect("/login")
+
+
     @app.route('/redefinePass')
     def rediPass():
         return flask.render_template("redefinir.html")
+
+
     @app.route('/erro')
     def erro():
         return flask.render_template("erro.html")
+
+
     @app.route('/doacao')
     def doacao():
         return flask.render_template("doacao.html")
+
+
     @app.route('/contact')
     def contact():
         return flask.render_template("contact.html")
+
+
     @app.route('/code')
     def redefinecodeV():
         return flask.render_template("redefinircod.html", u=tempcod)
+
+
+    @app.route('/voluntariof')
+    def formularioV():
+        return flask.render_template("formularioV.html")
+
+
+    @app.route('/voluntarioAvl')
+    def formularioVl():
+        return flask.render_template("voluntarioavl.html")
+
+
+    @app.route('/voluntarios')
+    def voluntariosLista():
+        if cok is None:
+            return flask.redirect("/login")
+        else:
+            with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+                c = conn.cursor()
+                c.execute('SELECT * FROM user WHERE access=? AND email=?', (3, cok[0],))
+                acc = c.fetchone()
+
+                if acc is not None:
+                    with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+                        c = conn.cursor()
+                        c.execute(
+                            "SELECT u.nome, u.email, u.user_id, u.access, v.tipo FROM user u JOIN voluntario v ON u.user_id = v.user_id;")
+                        data = c.fetchall()
+
+                        return flask.render_template("voluntariosLista.html", data=data)
+                else:
+                    return flask.redirect("/erro")
+
 
     # Form send
     @app.route('/profile/dltProf', methods=['POST'])
@@ -83,13 +142,15 @@ try:
 
             if email == cok[0] and passw == cok[1] and name == cok[2]:
 
-                with sqlite3.connect( configurationsInfoTXT['data'] ) as conn:
+                with sqlite3.connect(configurationsInfoTXT['data']) as conn:
                     c = conn.cursor()
                     c.execute("DELETE FROM user WHERE email = ? AND pass = ? AND nome = ?", (email, passw, name))
 
                     return flask.redirect('/login')
             else:
                 return flask.redirect('/profile?error=2')
+
+
     @app.route('/sign/send', methods=['POST'])
     def registerF():
         # Register
@@ -98,17 +159,19 @@ try:
         nome = flask.request.form['nome']
 
         # Recreate connection each time to prevent threading issues
-        with sqlite3.connect( configurationsInfoTXT['data'] ) as conn:
+        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
             c = conn.cursor()
             c.execute("SELECT * FROM user WHERE email = ?", (email,))
             r = c.fetchone()
 
             if r == None:
-                c.execute("INSERT INTO user (nome, email, pass, access) VALUES (?,?,?,?)", (nome, email, passw, 1))
+                c.execute("INSERT INTO user (nome, email, pass, access) VALUES (?,?,?,?)", (nome, email, passw, 0))
 
                 return flask.redirect("/login")
             else:
                 return flask.redirect(f"/sign?error=1&n={nome}&p={passw}")
+
+
     @app.route('/login/send', methods=['POST'])
     def loginR():
         # Login
@@ -116,7 +179,7 @@ try:
         passw = flask.request.form.get('password')
 
         # Recreate connection each time to prevent threading issues
-        with sqlite3.connect( configurationsInfoTXT['data'] ) as conn:
+        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
             c = conn.cursor()
 
             # Bypass the sql-injection
@@ -129,6 +192,8 @@ try:
                 loadCok(email, passw, r[1], r[4], r[3], r[5], r[7])
 
                 return flask.redirect('/profile')
+
+
     @app.route('/profile/send', methods=['POST'])
     def editProfile():
         Oemail = flask.request.form.get('Oemail')
@@ -167,6 +232,8 @@ try:
 
                 else:
                     return flask.redirect(f"/profile?error=1")
+
+
     @app.route('/contact/send', methods=['POST'])
     def contatSend():
         eS = 'hortelaurbana@gmail.com'
@@ -208,6 +275,8 @@ try:
             smtp.sendmail(eS, eS, em.as_string())
 
         return flask.redirect("/index")
+
+
     @app.route('/redefinePass/send', methods=['POST'])
     def perdeuasenha():
         eM = flask.request.form.get('email')
@@ -232,7 +301,7 @@ try:
                 b = f"""
                             🌱🌿  Codigo de confirmação para redefinir senha 🌻☀
                             Código expira após 5 minutos   
-        
+
                             {ass}
                         """
 
@@ -249,10 +318,12 @@ try:
                     smtp.sendmail(eS, eM, em.as_string())
 
                 return flask.redirect('/code')
+
+
     @app.route('/redefinePassC/send', methods=['POST'])
     def mudarsenha():
         global tempcod
-        
+
         # Register
         eM = tempcod[1]
         ePa = tempcod[2]
@@ -262,9 +333,60 @@ try:
         # Recreate connection each time to prevent threading issues
         with sqlite3.connect(configurationsInfoTXT['data']) as conn:
             c = conn.cursor()
-            c.execute("UPDATE user SET pass = ? WHERE email = ?", (ePa,eM))
+            c.execute("UPDATE user SET pass = ? WHERE email = ?", (ePa, eM))
 
             return flask.redirect("/login")
+
+
+    @app.route('/voluntariof/send', methods=['POST'])
+    def formularioVS():
+        # Register
+        email = flask.request.form['email']
+        nome = flask.request.form['nome']
+
+        cpf = flask.request.form['cpf']
+        cpf1 = cpf.replace(".", "")
+        cpf2 = cpf1.replace("-", "")
+
+        tel = flask.request.form['tel']
+        tel1 = tel.replace(" ", "")
+        tel2 = tel1.replace("-", "")
+
+        # Recreate connection each time to prevent threading issues
+        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+            c = conn.cursor()
+            c.execute("SELECT * FROM user WHERE email = ?", (email,))
+            r = c.fetchone()
+
+            if r is not None:
+                c.execute("UPDATE user SET cpf = ?, nome = ?, telefone = ? WHERE email = ?", (cpf2, nome, tel2, email,))
+
+                # Fetch the result
+                c.execute("SELECT user_id FROM user WHERE email = ?", (email,))
+                r = c.fetchone()
+                idU = r[0]
+
+                c.execute("INSERT INTO voluntario (dataDisp, tipo, user_id) VALUES (?,?,?)",
+                          ("0000-00-00", "avaliando", idU,))
+
+                return flask.redirect("/voluntarioAvl")
+            else:
+                return flask.redirect(f"/sign")
+
+
+    @app.route('/voluntarios/send', methods=['POST'])
+    def voluntariosListaS():
+        with sqlite3.connect(configurationsInfoTXT['data']) as conn:
+            c = conn.cursor()
+
+            for key, value in flask.request.form.items():
+                print("Processing:", key, value)
+                if key.startswith('status_'):
+                    uid = key.split('_')[1]
+
+                    c.execute('UPDATE voluntario SET tipo = ? WHERE user_id = ?', (value, uid))
+            return flask.redirect("/voluntarios")
+
 
     if __name__ == '__main__':
         ip = configurationsInfoTXT['ip']

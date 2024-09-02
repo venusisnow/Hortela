@@ -56,4 +56,4 @@ CREATE TABLE calendarioDist (
 )
 
 INSERT INTO user (nome, email, cpf, pass, access)
-VALUES ('Root', 'admin@adm.com', 'mypass', 1);
+VALUES ('Root', 'admin@adm.com', '12345678901', 'mypass', 3);
