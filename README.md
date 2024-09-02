@@ -34,20 +34,4 @@ git clone https://github.com/HortelaFinalPaper/Hortela.git
 ```
 *If you *don't* have **GIT** installed, click [here](https://git-scm.com/downloads)*
 
-
-### Credits
-- **Python, Mobile, Github Aplication:**
-  - [Keyo🐸](https://github.com/Keyozito)
-- **Documentation:**
-  - [Viviane🌑](https://github.com/venusisnow)
-  - Brenda🐟
-- **Web Design:**
-  - [Viviane🌑](https://github.com/venusisnow)
-  - Brenda🐟
-  - Vitoria✏️
-- **App Design:**
-  - Brenda🐟
-  - Vitoria✏️
-  - Heitor🗻
-
 Feel free to explore, contribute, or use this project for your own purposes. If you have any questions or feedback, please don't hesitate to reach out.
