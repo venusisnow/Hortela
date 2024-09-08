@@ -55,5 +55,5 @@ CREATE TABLE calendarioDist (
   alimento varchar(200) NOT null
 )
 
-INSERT INTO user (nome, email, cpf, pass, access)
+INSERT INTO user (nome, email, pass, access)
 VALUES ('Root', 'admin@adm.com', 'mypass', 1);
